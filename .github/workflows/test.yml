@@ -1,30 +1,26 @@
-name: My Pipeline
+name: Java CI Pipeline
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Get code
-      uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-    - name: Install Java
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: Build and Test
-      run: mvn clean verify
+      - name: Build and Run Tests
+        run: mvn clean verify
 
-    - name: Sonar Analysis
-      run: |
-          mvn sonar:sonar \
-          -Dsonar.projectKey=mohammad-taha27 \
-          -Dsonar.organization=mohammad-taha27 \
-          -Dsonar.host.url=https://sonarcloud.io \
-          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      - name: Sonar Analysis
+        run: mvn sonar:sonar -Dsonar.projectKey=mohammad-taha27_calc -Dsonar.organization=mohammad-taha27 -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=${{ secrets.SONAR_TOKEN }}
