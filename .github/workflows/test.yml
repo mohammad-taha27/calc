@@ -22,8 +22,9 @@ jobs:
       run: mvn clean verify
 
     - name: Sonar Analysis
-      run: mvn sonar:sonar \
-        -Dsonar.projectKey=mohammad-taha27 \
-        -Dsonar.organization=mohammad-taha27 \
-        -Dsonar.host.url=https://sonarcloud.io \
-        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+      run: |
+          mvn sonar:sonar \
+          -Dsonar.projectKey=mohammad-taha27 \
+          -Dsonar.organization=mohammad-taha27 \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=${{ secrets.SONAR_TOKEN }}
