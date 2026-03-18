@@ -1,0 +1,29 @@
+name: My Pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Get code
+      uses: actions/checkout@v3
+
+    - name: Install Java
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Build and Test
+      run: mvn clean verify
+
+    - name: Sonar Analysis
+      run: mvn sonar:sonar \
+        -Dsonar.projectKey=mohammad-taha27 \
+        -Dsonar.organization=mohammad-taha27 \
+        -Dsonar.host.url=https://sonarcloud.io \
+        -Dsonar.login=${{ secrets.SONAR_TOKEN }}
