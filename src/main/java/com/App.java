@@ -25,7 +25,7 @@ class TypeAndExpressions
 
 public class App {
 
-	public String hello() {
+	private String hello() {
 		return "HEllo world";
 	}
 	
