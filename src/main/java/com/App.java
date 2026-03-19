@@ -24,10 +24,15 @@ class TypeAndExpressions
 }
 
 public class App {
+
+	public String hello() {
+		return "HEllo world";
+	}
 	
 	final static Logger logger = Logger.getLogger(App.class);
 	
     public static void main(String[] args) {
+	int test = 10;
     	try
     	{
     		if(args != null && args.length > 0)
